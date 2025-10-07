@@ -27,7 +27,7 @@ Extract relevant information and return ONLY valid JSON matching the schema.
 If data is missing, use reasonable defaults (0 for numbers, [] for arrays).
 Return ONLY the JSON, no other text."""
 
-    response = call_openai_fn(prompt, model="gpt-4o-mini", response_format="json")
+    response = call_openai_fn(prompt, model="gpt-5-mini", response_format="json")
     try:
         return json.loads(response)
     except:
@@ -431,7 +431,7 @@ Return JSON:
 }}
 """
 
-    response = call_openai_fn(prompt, model="gpt-4o-mini", response_format="json")
+    response = call_openai_fn(prompt, model="gpt-5-mini", response_format="json")
     if not response:
         return {"verdict": "KILL", "reason": "API Error"}
 
@@ -535,7 +535,7 @@ PASS if: total_annual_cost >= $10,000 with citable sources
 KILL if: total_annual_cost < $10,000 OR no evidence
 """
 
-    response = call_openai_fn(prompt_calc, model="gpt-4o-mini", response_format="json")
+    response = call_openai_fn(prompt_calc, model="gpt-5-mini", response_format="json")
     if not response:
         return {"verdict": "KILL", "reason": "API Error"}
 
@@ -618,7 +618,7 @@ Return JSON:
 PASS if: 2+ viable channels AND CAC < $500 AND time < 90 days
 """
 
-    response = call_openai_fn(prompt, model="gpt-4o-mini", response_format="json")
+    response = call_openai_fn(prompt, model="gpt-5-mini", response_format="json")
     if not response:
         return {"verdict": "KILL", "reason": "API Error"}
 
@@ -722,7 +722,7 @@ Return JSON:
 PASS if: domain_fit >= MEDIUM AND content_authenticity = CAN AND hard_constraints_pass = true
 """
 
-    response = call_openai_fn(prompt, model="gpt-4o-mini", response_format="json")
+    response = call_openai_fn(prompt, model="gpt-5-mini", response_format="json")
     if not response:
         return {"verdict": "KILL", "reason": "API Error"}
 

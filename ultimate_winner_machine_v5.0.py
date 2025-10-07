@@ -164,7 +164,7 @@ DOMINANT_PLAYERS = [
 # ═══════════════════════════════════════════════════════════
 
 def call_openai(prompt: str, system_message: str = "You are a business research expert.",
-                model: str = "gpt-4o-mini", response_format: str = None) -> str:
+                model: str = "gpt-5-mini", response_format: str = None) -> str:
     """Call OpenAI API with rate limiting"""
     time.sleep(1)
     try:
@@ -719,7 +719,7 @@ Return JSON:
 }}
 """
 
-    response = call_openai(prompt, model="gpt-4o-mini", response_format="json")
+    response = call_openai(prompt, model="gpt-5-mini", response_format="json")
     if not response:
         return {"verdict": "KILL", "reason": "API Error"}
 
