@@ -1,0 +1,56 @@
+{
+  "background": "7 failed startups, technical founder, built B2B SaaS before",
+  "skills": [
+    "full-stack development (React, Node.js, Python)",
+    "content creation (writing, not video)",
+    "written communication",
+    "systems thinking",
+    "product design"
+  ],
+  "interests": [
+    "operations problems",
+    "boring industries with real problems",
+    "workflow automation",
+    "efficiency improvements",
+    "small business challenges"
+  ],
+  "network": [
+    "other indie founders",
+    "small business owners (general)",
+    "tech community",
+    "online communities"
+  ],
+  "constraints": {
+    "no_phone_sales": true,
+    "reason_phone": "stuttering on phone calls",
+    "solo_buildable": true,
+    "must_be_digital": true,
+    "no_hardware": true,
+    "no_onpremise": true,
+    "no_certifications": true,
+    "fast_validation_needed": true,
+    "max_build_time_months": 3
+  },
+  "motivation": [
+    "find real product-market fit",
+    "build profitable business",
+    "avoid 8th failure",
+    "validate before building",
+    "help real businesses solve real problems"
+  ],
+  "acquisition_channels_comfortable_with": [
+    "SEO/content marketing",
+    "online communities/forums",
+    "social media (LinkedIn, Twitter)",
+    "paid ads (Facebook, Google)",
+    "partnerships/integrations",
+    "productized signup flows"
+  ],
+  "acquisition_channels_NOT_comfortable_with": [
+    "cold calling",
+    "in-person demos",
+    "trade shows",
+    "relationship selling",
+    "enterprise sales cycles"
+  ]
+}
