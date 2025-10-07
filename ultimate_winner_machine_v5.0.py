@@ -850,7 +850,7 @@ def main():
     if stage2_evidence_engine:
         survivors, killed = run_stage_batch(
             survivors,
-            lambda idea: stage2_evidence_engine(idea, call_perplexity, web_search),
+            lambda idea: stage2_evidence_engine(idea, call_perplexity, web_search, call_openai),
             "Stage 2: Evidence"
         )
         all_ideas.extend(killed)

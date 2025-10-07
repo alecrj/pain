@@ -10,11 +10,34 @@ from typing import Dict, List
 # Import from main file will provide these
 # call_openai, call_perplexity, web_search, load_founder_profile
 
+def perplexity_to_json(perplexity_response: str, expected_schema: Dict, call_openai_fn) -> Dict:
+    """
+    Convert Perplexity's conversational response into structured JSON
+    Uses GPT-4o-mini to extract and structure the data
+    """
+    prompt = f"""Convert this research response into JSON matching the schema.
+
+RESEARCH RESPONSE:
+{perplexity_response}
+
+REQUIRED JSON SCHEMA:
+{json.dumps(expected_schema, indent=2)}
+
+Extract relevant information and return ONLY valid JSON matching the schema.
+If data is missing, use reasonable defaults (0 for numbers, [] for arrays).
+Return ONLY the JSON, no other text."""
+
+    response = call_openai_fn(prompt, model="gpt-4o-mini", response_format="json")
+    try:
+        return json.loads(response)
+    except:
+        return expected_schema  # Return schema with defaults if parsing fails
+
 # ═══════════════════════════════════════════════════════════
 # STAGE 2: MULTI-SIGNAL EVIDENCE + MARKET SIZE
 # ═══════════════════════════════════════════════════════════
 
-def stage2_evidence_engine(idea: Dict, call_perplexity_fn, web_search_fn) -> Dict:
+def stage2_evidence_engine(idea: Dict, call_perplexity_fn, web_search_fn, call_openai_fn) -> Dict:
     """
     7 evidence signals + market size estimation
     Returns score and decision
@@ -53,17 +76,15 @@ Scoring:
 """
 
     sv_response = call_perplexity_fn(prompt_sv)
-    try:
-        sv_data = json.loads(sv_response) if sv_response else {}
-        sv_score = sv_data.get("score", 0)
-        total_score += sv_score
-        if sv_score > 0:
-            signals_triggered += 1
-        evidence["search_volume"] = sv_data
-        print(f"      ✅ Score: {sv_score}/5 ({sv_data.get('total_monthly_searches', 0)} searches/mo)")
-    except:
-        print(f"      ⚠️  Could not parse search volume")
-        evidence["search_volume"] = {"score": 0}
+    schema = {"total_monthly_searches": 0, "trend": "unknown", "score": 0}
+    sv_data = perplexity_to_json(sv_response, schema, call_openai_fn) if sv_response else schema
+
+    sv_score = sv_data.get("score", 0)
+    total_score += sv_score
+    if sv_score > 0:
+        signals_triggered += 1
+    evidence["search_volume"] = sv_data
+    print(f"      ✅ Score: {sv_score}/5 ({sv_data.get('total_monthly_searches', 0)} searches/mo)")
 
     # SIGNAL 2: DIY Solution Demand
     print(f"\n   📝 Signal 2: DIY Solution Demand")
@@ -92,17 +113,15 @@ Scoring:
 """
 
     diy_response = call_perplexity_fn(prompt_diy)
-    try:
-        diy_data = json.loads(diy_response) if diy_response else {}
-        diy_score = diy_data.get("score", 0)
-        total_score += diy_score
-        if diy_score > 0:
-            signals_triggered += 1
-        evidence["diy_demand"] = diy_data
-        print(f"      ✅ Score: {diy_score}/5 ({diy_data.get('monthly_diy_searches', 0)} DIY searches/mo)")
-    except:
-        print(f"      ⚠️  Could not parse DIY demand")
-        evidence["diy_demand"] = {"score": 0}
+    schema = {"monthly_diy_searches": 0, "top_results": [], "score": 0}
+    diy_data = perplexity_to_json(diy_response, schema, call_openai_fn) if diy_response else schema
+
+    diy_score = diy_data.get("score", 0)
+    total_score += diy_score
+    if diy_score > 0:
+        signals_triggered += 1
+    evidence["diy_demand"] = diy_data
+    print(f"      ✅ Score: {diy_score}/5 ({diy_data.get('monthly_diy_searches', 0)} DIY searches/mo)")
 
     # SIGNAL 3: Job Posting Analysis
     print(f"\n   💼 Signal 3: Job Posting Analysis")
@@ -128,17 +147,15 @@ Scoring:
 """
 
     jobs_response = call_perplexity_fn(prompt_jobs)
-    try:
-        jobs_data = json.loads(jobs_response) if jobs_response else {}
-        jobs_score = jobs_data.get("score", 0)
-        total_score += jobs_score
-        if jobs_score > 0:
-            signals_triggered += 1
-        evidence["job_postings"] = jobs_data
-        print(f"      ✅ Score: {jobs_score}/5 ({jobs_data.get('pain_mentions', 0)} mentions in jobs)")
-    except:
-        print(f"      ⚠️  Could not parse job data")
-        evidence["job_postings"] = {"score": 0}
+    schema = {"pain_mentions": 0, "sample_jobs": [], "score": 0}
+    jobs_data = perplexity_to_json(jobs_response, schema, call_openai_fn) if jobs_response else schema
+
+    jobs_score = jobs_data.get("score", 0)
+    total_score += jobs_score
+    if jobs_score > 0:
+        signals_triggered += 1
+    evidence["job_postings"] = jobs_data
+    print(f"      ✅ Score: {jobs_score}/5 ({jobs_data.get('pain_mentions', 0)} mentions in jobs)")
 
     # SIGNAL 4: Competitor Gap Mining
     print(f"\n   ⭐ Signal 4: Competitor Gap Mining")
@@ -163,17 +180,15 @@ Scoring:
 """
 
     gaps_response = call_perplexity_fn(prompt_gaps)
-    try:
-        gaps_data = json.loads(gaps_response) if gaps_response else {}
-        gaps_score = gaps_data.get("score", 0)
-        total_score += gaps_score
-        if gaps_score > 0:
-            signals_triggered += 1
-        evidence["competitor_gaps"] = gaps_data
-        print(f"      ✅ Score: {gaps_score}/5 ({gaps_data.get('reviews_mentioning_gap', 0)} gap mentions)")
-    except:
-        print(f"      ⚠️  Could not parse competitor gaps")
-        evidence["competitor_gaps"] = {"score": 0}
+    schema = {"tools_found": [], "reviews_mentioning_gap": 0, "sample_complaints": [], "score": 0}
+    gaps_data = perplexity_to_json(gaps_response, schema, call_openai_fn) if gaps_response else schema
+
+    gaps_score = gaps_data.get("score", 0)
+    total_score += gaps_score
+    if gaps_score > 0:
+        signals_triggered += 1
+    evidence["competitor_gaps"] = gaps_data
+    print(f"      ✅ Score: {gaps_score}/5 ({gaps_data.get('reviews_mentioning_gap', 0)} gap mentions)")
 
     # SIGNAL 5: Industry Forums
     print(f"\n   💬 Signal 5: Industry Forum Evidence")
@@ -202,17 +217,15 @@ Scoring:
 """
 
     forums_response = call_perplexity_fn(prompt_forums)
-    try:
-        forums_data = json.loads(forums_response) if forums_response else {}
-        forums_score = forums_data.get("score", 0)
-        total_score += forums_score
-        if forums_score > 0:
-            signals_triggered += 1
-        evidence["forums"] = forums_data
-        print(f"      ✅ Score: {forums_score}/4 ({forums_data.get('threads_found', 0)} forum threads)")
-    except:
-        print(f"      ⚠️  Could not parse forum data")
-        evidence["forums"] = {"score": 0}
+    schema = {"threads_found": 0, "sample_threads": [], "score": 0}
+    forums_data = perplexity_to_json(forums_response, schema, call_openai_fn) if forums_response else schema
+
+    forums_score = forums_data.get("score", 0)
+    total_score += forums_score
+    if forums_score > 0:
+        signals_triggered += 1
+    evidence["forums"] = forums_data
+    print(f"      ✅ Score: {forums_score}/4 ({forums_data.get('threads_found', 0)} forum threads)")
 
     # SIGNAL 6: Web Evidence
     print(f"\n   🌐 Signal 6: General Web Evidence")
@@ -236,17 +249,15 @@ Scoring:
 """
 
     web_response = call_perplexity_fn(prompt_web)
-    try:
-        web_data = json.loads(web_response) if web_response else {}
-        web_score = web_data.get("score", 0)
-        total_score += web_score
-        if web_score > 0:
-            signals_triggered += 1
-        evidence["web_evidence"] = web_data
-        print(f"      ✅ Score: {web_score}/4 ({web_data.get('sources_found', 0)} web sources)")
-    except:
-        print(f"      ⚠️  Could not parse web evidence")
-        evidence["web_evidence"] = {"score": 0}
+    schema = {"sources_found": 0, "sample_sources": [], "score": 0}
+    web_data = perplexity_to_json(web_response, schema, call_openai_fn) if web_response else schema
+
+    web_score = web_data.get("score", 0)
+    total_score += web_score
+    if web_score > 0:
+        signals_triggered += 1
+    evidence["web_evidence"] = web_data
+    print(f"      ✅ Score: {web_score}/4 ({web_data.get('sources_found', 0)} web sources)")
 
     # SIGNAL 7: Cost/ROI Research
     print(f"\n   💰 Signal 7: Cost/ROI Research")
@@ -275,17 +286,15 @@ Scoring:
 """
 
     cost_response = call_perplexity_fn(prompt_cost)
-    try:
-        cost_data = json.loads(cost_response) if cost_response else {}
-        cost_score = cost_data.get("score", 0)
-        total_score += cost_score
-        if cost_score > 0:
-            signals_triggered += 1
-        evidence["cost_research"] = cost_data
-        print(f"      ✅ Score: {cost_score}/5 (third-party cost validation)")
-    except:
-        print(f"      ⚠️  Could not parse cost research")
-        evidence["cost_research"] = {"score": 0}
+    schema = {"cost_estimates": [], "sources": [], "has_third_party_validation": False, "score": 0}
+    cost_data = perplexity_to_json(cost_response, schema, call_openai_fn) if cost_response else schema
+
+    cost_score = cost_data.get("score", 0)
+    total_score += cost_score
+    if cost_score > 0:
+        signals_triggered += 1
+    evidence["cost_research"] = cost_data
+    print(f"      ✅ Score: {cost_score}/5 (third-party cost validation)")
 
     # SIGNAL 8: Market Size (NEW)
     print(f"\n   📈 Signal 8: Market Size Estimation")
@@ -314,16 +323,13 @@ Scoring:
 """
 
     market_response = call_perplexity_fn(prompt_market)
-    try:
-        market_data = json.loads(market_response) if market_response else {}
-        market_score = market_data.get("score", 0)
-        # Market size is pass/fail, not added to score
-        evidence["market_size"] = market_data
-        print(f"      ✅ TAM: {market_data.get('tam_estimate', 'Unknown')} (Score: {market_score}/5)")
-    except:
-        print(f"      ⚠️  Could not parse market size")
-        evidence["market_size"] = {"score": 0}
-        market_score = 0
+    schema = {"total_businesses": 0, "addressable_percent": 0, "addressable_market": 0, "tam_estimate": "Unknown", "score": 0}
+    market_data = perplexity_to_json(market_response, schema, call_openai_fn) if market_response else schema
+
+    market_score = market_data.get("score", 0)
+    # Market size is pass/fail, not added to score
+    evidence["market_size"] = market_data
+    print(f"      ✅ TAM: {market_data.get('tam_estimate', 'Unknown')} (Score: {market_score}/5)")
 
     # FINAL DECISION
     print(f"\n   📊 EVIDENCE SUMMARY:")

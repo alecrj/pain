@@ -528,6 +528,462 @@
         }
       },
       "kill_reason": "Failed checks"
+    },
+    {
+      "business": "HVAC contractors with 15-40 technicians, $3-15M annual revenue",
+      "pain": "Tracking individual technician training certifications, licensing renewals and mandatory safety courses across multiple manufacturers/jurisdictions, risking compliance fines and job site removals",
+      "current_solution": "Mix of paper files, outlook calendar reminders, and basic spreadsheets with no automated alerts or verification system",
+      "whitespace_evidence": "HR platforms like BambooHR handle general training but not industry-specific certs. Field service software focuses on scheduling/dispatch but not certification management",
+      "estimated_cost": "$45,000+ (combining $15k in admin time, $20k in missed jobs due to expired certs, $10k+ regulatory fines)",
+      "id": 29,
+      "hash": "f1db6c797a68",
+      "generated_date": "2025-10-07",
+      "status": "killed_stage_2:_evidence",
+      "source_cluster": "Effective Staff Training and Management",
+      "stage_1:_white_space_result": {
+        "verdict": "PASS",
+        "analysis": {
+          "dominant_player": null,
+          "adjacent_platform": "ServiceTitan",
+          "adjacent_market_share": "35%",
+          "standalone_viable": true,
+          "switching_cost": "LOW",
+          "market_type": "WHITE_SPACE",
+          "decision": "PASS",
+          "reasoning": "1) Dominant-player check: General-purpose platforms listed (Salesforce, HubSpot, Monday.com, Asana, Slack, Shopify, QuickBooks, Xero, Stripe, Square) do not provide an out\u2011of\u2011the\u2011box, HVAC\u2011specific solution for tracking individual technician certifications, manufacturer credentials, jurisdictional licenses and recurring mandatory safety courses. They can be hacked together with manual workflows or spreadsheets, but they do not solve the regulatory/compliance tracking pain at scale \u2192 dominant_player null.  \n\n2) Adjacent platform: The HVAC field-service management category is the natural adjacent ecosystem. ServiceTitan is the leading mid\u2011market FSM for residential HVAC contractors in the target size band (15\u201340 techs, $3\u201315M). Other competitors include Housecall Pro, Jobber, FieldEdge and Service Fusion, but ServiceTitan has the largest penetration among mid\u2011market HVAC shops (estimated \u224835% share in that segment).  \n\n3) Standalone vs replace: A dedicated certification/compliance product can be built as a standalone app that integrates with FSM platforms (ServiceTitan, Housecall Pro, etc.) via API/webhooks to sync employee records, job assignments and alerts. Therefore it does not need to replace the customer's entire platform; integration is the practical go\u2011to route \u2192 standalone_viable = true.  \n\n4) Switching / migration burden: Because the solution can integrate rather than require full FSM replacement, switching cost is LOW. Typical customers currently track credentials in spreadsheets, PDFs or stubs in their FSM \u2014 migrating certification records (names, license numbers, expiry dates, attachments) into a dedicated tool is usually straightforward and can often be automated or completed in under a day for a single office. (If you tried to force customers to replace ServiceTitan/Housecall Pro entirely, migration would be HIGH, but that is unnecessary and not recommended.)  \n\n5) Market type & decision: There is clear white space \u2014 the problem is industry\u2011specific, compliance\u2011sensitive, and underserved by general platforms and by many FSMs (which either have limited training modules or inconsistent licensing features). Competitive incumbents exist but no single dominant specialist product has saturated this exact niche, so this is WHITE_SPACE and we recommend PASS.  \n\nCaveats: ServiceTitan and other FSMs may add deeper compliance/training modules over time or restrict integrations; estimate of market share is approximate and should be validated via primary research before go\u2011to\u2011market planning."
+        }
+      },
+      "stage_2:_evidence_result": {
+        "verdict": "KILL",
+        "score": 0,
+        "signals": 0,
+        "evidence": {
+          "search_volume": {
+            "score": 0
+          },
+          "diy_demand": {
+            "score": 0
+          },
+          "job_postings": {
+            "score": 0
+          },
+          "competitor_gaps": {
+            "score": 0
+          },
+          "forums": {
+            "score": 0
+          },
+          "web_evidence": {
+            "score": 0
+          },
+          "cost_research": {
+            "score": 0
+          },
+          "market_size": {
+            "score": 0
+          }
+        }
+      },
+      "kill_reason": "Failed checks"
+    },
+    {
+      "business": "Independent HVAC contractors ($2-10M revenue, 10-30 technicians)",
+      "pain": "Inability to accurately forecast seasonal part needs and labor costs for preventive maintenance contracts, leading to 15-25% budget overruns during peak seasons",
+      "current_solution": "Basic Excel spreadsheets tracking historical costs, manual calculations for new contract pricing, no integration with actual service data",
+      "whitespace_evidence": "ServiceTitan and FieldEdge handle dispatch and billing but lack predictive seasonal budgeting tools specific to PM contracts",
+      "estimated_cost": "$40,000-100,000 in unexpected labor costs and rush-ordered parts premiums",
+      "id": 30,
+      "hash": "14ed40c4eccf",
+      "generated_date": "2025-10-07",
+      "status": "killed_stage_2:_evidence",
+      "source_cluster": "Budget Preparation and Cost Control",
+      "stage_1:_white_space_result": {
+        "verdict": "PASS",
+        "analysis": {
+          "dominant_player": null,
+          "adjacent_platform": "ServiceTitan",
+          "adjacent_market_share": "35%",
+          "standalone_viable": true,
+          "switching_cost": "LOW",
+          "market_type": "FRAGMENTED",
+          "decision": "PASS",
+          "reasoning": "Task 1 \u2014 Dominant player check: None of the listed general-purpose tools (Salesforce, HubSpot, Monday.com, Asana, Slack, Shopify, QuickBooks, Xero, Stripe, Square) directly solve the specific pain of accurately forecasting seasonal parts needs and labor costs for preventive\u2011maintenance (PM) contracts for mid\u2011sized HVAC shops. Accounting tools (QuickBooks/Xero) handle money but not granular PM scheduling/parts forecasting tied to technicians; CRMs/project tools don't manage inventory + technician routing + PM contract cadence. Therefore none of those = direct blocking dominant player (dominant_player = null).\n\nTask 2 \u2014 Adjacent platform analysis: The de facto platforms for independent HVAC contractors in the $2\u201310M / 10\u201330 tech range are field\u2011service management systems \u2014 primarily ServiceTitan (also Housecall Pro, Jobber, FieldEdge, ServiceFusion). ServiceTitan is the closest adjacent platform: it covers PM contract management, scheduling, inventory and reporting and is widely used in this segment. Estimated market share among mid\u2011market US HVAC/field\u2011service shops is roughly 30\u201340% (we use ~35%) \u2014 significant but not exclusive. Other competitors take meaningful shares, so the market is not monopolized.\n\nTask 3 \u2014 Switching feasibility: A targeted forecasting product can be built as a standalone add\u2011on that integrates with field service platforms (ServiceTitan et al.) via APIs to pull: PM contract schedules, parts inventory, historical job/parts usage, technician hours/rates, payroll/labor burden, and planned schedules. That integration approach avoids replacing the core FSM/dispatch/accounting systems, so it is viable as a standalone product (standalone_viable = true). Practical considerations: ServiceTitan provides integration paths (and ecosystems) though access/partnering terms vary; building connectors for the top 2\u20133 FSM platforms will be necessary to address the addressable market.\n\nTask 4 \u2014 Data migration burden: Because the recommended approach is add\u2011on/integration rather than full platform replacement, migration burden is low: you ingest live contract/schedule/inventory data and historical job records through APIs (or lightweight exports). This is typically achievable without >1 week of per\u2011customer migration work (most customers can go live with connector + 1\u20133 days of setup and validation), so switching_cost = LOW. If a customer were to replace their entire FSM (ServiceTitan \u2192 new platform), that would be HIGH and would likely be a non\u2011starter for most shops \u2014 but that scenario is unnecessary for this product.\n\nOverall decision: PASS. Reason: There is a clear, addressable pain that incumbent generic tools do not solve and existing FSM platforms only partially solve (customers still report forecasting misses). A standalone forecasting/parts\u2011and\u2011labor planning product that integrates into ServiceTitan and other FSMs can materially reduce the 15\u201325% peak\u2011season overruns with low customer switching cost. Risks to manage: API access/partnership terms with FSM vendors, the need to support multiple FSMs (to reach scale), and building trust/validation with operators (show ROI via pilot projects)."
+        }
+      },
+      "stage_2:_evidence_result": {
+        "verdict": "KILL",
+        "score": 0,
+        "signals": 0,
+        "evidence": {
+          "search_volume": {
+            "score": 0
+          },
+          "diy_demand": {
+            "score": 0
+          },
+          "job_postings": {
+            "score": 0
+          },
+          "competitor_gaps": {
+            "score": 0
+          },
+          "forums": {
+            "score": 0
+          },
+          "web_evidence": {
+            "score": 0
+          },
+          "cost_research": {
+            "score": 0
+          },
+          "market_size": {
+            "score": 0
+          }
+        }
+      },
+      "kill_reason": "Failed checks"
+    },
+    {
+      "business": "Independent HVAC contractors ($2-10M revenue, 10-30 technicians)",
+      "pain": "Lost revenue from incorrect tech-to-job matching based on certifications and equipment expertise, leading to return visits and warranty claims when wrong tech is dispatched",
+      "current_solution": "Paper logs or basic dispatch software tracking only availability, not matching tech expertise to specific equipment brands/models. Manual checking of tech certifications.",
+      "whitespace_evidence": "ServiceTitan and FieldEdge focus on scheduling/dispatch but lack automated expertise matching. No major solution automatically pairs tech certifications/experience with specific equipment types.",
+      "estimated_cost": "$45,000+ ($1,500 per incorrect dispatch \u00d7 ~30 mismatches/year in lost time, return visits, and warranty claim denials)",
+      "id": 31,
+      "hash": "2a3b7379e062",
+      "generated_date": "2025-10-07",
+      "status": "killed_stage_2:_evidence",
+      "source_cluster": "Scheduling and Dispatch Optimization",
+      "stage_1:_white_space_result": {
+        "verdict": "PASS",
+        "analysis": {
+          "dominant_player": "ServiceTitan",
+          "adjacent_platform": "ServiceTitan",
+          "adjacent_market_share": "50%",
+          "standalone_viable": true,
+          "switching_cost": "LOW",
+          "market_type": "FRAGMENTED",
+          "decision": "PASS",
+          "reasoning": "Task 1 (Dominant player check): The specific pain \u2014 accurately matching technician certifications/equipment expertise to a job to avoid return visits and warranty claims \u2014 is not effectively solved by the general-purpose tools listed (HubSpot, Monday.com, Asana, Slack, Shopify, QuickBooks, Xero, Stripe, Square). Salesforce Field Service Lightning can technically provide skill-based routing, asset/context-aware work orders, and dispatch optimization, but it is not the practical incumbent within the independent HVAC SMB segment ($2\u201310M, 10\u201330 techs). In this vertical the clear dominant vertical player is ServiceTitan (and other trade-focused platforms like Housecall Pro, Jobber, FieldEdge). Because the HVAC market uses trade-specific platforms, mark the dominant player as ServiceTitan. Task 2 (Adjacent platform): HVAC contractors of this size typically run their operations (dispatch, tech profiles, asset records, job history, invoicing) in ServiceTitan or similar HVAC/service management platforms. Task 3 (Switching feasibility): A focused product that provides improved certification/equipment-skilled matching can be built as a standalone augmentation that integrates with ServiceTitan via API/webhooks to read tech profiles, job/asset requirements and to push dispatch recommendations or work-order tags. ServiceTitan exposes integrations and third-party partners, so an add-on approach is viable; it does not require replacing the entire platform. Task 4 (Data migration burden): Because the recommended route is integration rather than full replacement, migration is minimal (syncing tech profiles and job templates via APIs or small CSV imports). This is typically a <1 day practical effort for accessible fields (or a few days for robust syncing), so switching cost is LOW if you position as an integratable augmentation. Market type and decision: The market is FRAGMENTED \u2014 there are a few strong vertical incumbents (ServiceTitan is a leader) but no single monopoly that fully blocks innovation. Because a standalone, integrated solution is technically feasible and switching/migration burden is low, the project should PASS. Caveats and caveats: - If targeting customers who already use Salesforce Field Service (rare in this SMB HVAC segment), the problem may already be addressable within that product; pursuing large-scale competition with Salesforce would be infeasible. - Some large shops may rely heavily on ServiceTitan for dispatch logic; you need to ensure your product complements rather than duplicates (i.e., provides better certification-to-equipment matching, predictive warranty-risk scoring, or a superior UX for dispatchers). - Estimated adjacent_market_share (50%) is a directional estimate for ServiceTitan's penetration in mid-market home-service/heating & cooling software and should be validated with primary research. If validated and ServiceTitan coverage is higher in your target cohort, integration strategy becomes even more important."
+        }
+      },
+      "stage_2:_evidence_result": {
+        "verdict": "KILL",
+        "score": 0,
+        "signals": 0,
+        "evidence": {
+          "search_volume": {
+            "score": 0
+          },
+          "diy_demand": {
+            "score": 0
+          },
+          "job_postings": {
+            "score": 0
+          },
+          "competitor_gaps": {
+            "score": 0
+          },
+          "forums": {
+            "score": 0
+          },
+          "web_evidence": {
+            "score": 0
+          },
+          "cost_research": {
+            "score": 0
+          },
+          "market_size": {
+            "score": 0
+          }
+        }
+      },
+      "kill_reason": "Failed checks"
+    },
+    {
+      "business": "Independent HVAC distributors ($2-10M revenue, serving 50-200 contractor customers)",
+      "pain": "Tracking real-time parts availability across multiple manufacturer warehouses to prevent emergency stockouts for contractor customers, leading to lost sales and contractor relationship damage",
+      "current_solution": "Manual checking of manufacturer portals + basic ERP inventory counts, no integration or automation, causing 2-3 hour delays in confirming availability",
+      "whitespace_evidence": "Major ERPs like Eclipse and Prophet 21 track internal inventory but don't integrate real-time manufacturer warehouse availability. No dominant specialized solution exists.",
+      "estimated_cost": "$75,000+ ($50k in lost emergency sales, $25k in expedited shipping costs and staff time spent manually checking)",
+      "id": 32,
+      "hash": "017ac77e3512",
+      "generated_date": "2025-10-07",
+      "status": "killed_stage_2:_evidence",
+      "source_cluster": "Inventory and Supply Chain Management",
+      "stage_1:_white_space_result": {
+        "verdict": "PASS",
+        "analysis": {
+          "dominant_player": null,
+          "adjacent_platform": "QuickBooks (often paired with Fishbowl or Acctivate for inventory); larger independents may use Epicor/Prophet21 or NetSuite",
+          "adjacent_market_share": "60%",
+          "standalone_viable": true,
+          "switching_cost": "LOW",
+          "market_type": "WHITE_SPACE",
+          "decision": "PASS",
+          "reasoning": "Task 1 (Dominant player): None of the listed general-purpose tools (Salesforce, HubSpot, Monday.com, Asana, Slack, Shopify, QuickBooks, Xero, Stripe, Square) provide a turnkey solution for real-time, cross-manufacturer parts availability across multiple manufacturer warehouses for independent HVAC distributors. QuickBooks shows up in the list but by itself is an accounting tool; inventory visibility across many manufacturers' warehouses and live manufacturer stock feeds is not a solved problem in those platforms \u2014 so there is no single dominant incumbent that precludes a new entrant.\\n\\nTask 2 (Adjacent platforms): Small independent HVAC distributors in the $2\u201310M band most commonly run QuickBooks for accounting and add inventory modules like Fishbowl or Acctivate for stock management. Larger independents may use distribution ERPs such as Epicor/Prophet21, Acumatica, or NetSuite. Contractor customers (end users) often use ServiceTitan, but that is for service ops, not distributor inventory sourcing. I estimate QuickBooks + QuickBooks-integrated inventory tools account for roughly 60%+ of this small-distributor segment.\\n\\nTask 3 (Switching feasibility): A standalone product is viable. The realistic go-to-market is a lightweight SaaS connector/portal that aggregates manufacturer stock (via APIs/EDI/CSV/portal scraping where necessary) and exposes live availability to distributor users and their contractor customers, while integrating with the distributor's existing systems (QuickBooks, Fishbowl, Acctivate, or larger ERP via APIs). Replacing a distributor's ERP would be high friction, but most customers will accept an integrated overlay that preserves their accounting/ERP.\\n\\nTask 4 (Data migration burden): Because the approach is integration-first (no ERP replacement), migration is limited to SKU mapping, initial catalog syncs and connector configuration. For the bulk of target customers this can be completed in hours\u2013a few days (<1 week) \u2014 so switching/migration burden is LOW. (Exceptions: distributors on very old/custom ERPs with no integration options increase effort, but these are a minority.)\\n\\nOverall assessment: The market represents white space. There is no dominant, focused solution for the specific problem of real-time cross-manufacturer parts visibility for small HVAC distributors; adjacent tools are fragmented and often manual. A standalone SaaS aggregator that integrates into QuickBooks/inventory modules and manufacturer feeds is feasible and has low switching cost for the core target segment \u2014 recommendation: PASS.\\n\\nKey risks & considerations: manufacturer API access/policy variability and legal/partner restrictions; need to support multiple feed types (API, EDI, CSV, portal scraping); getting critical mass of manufacturer connectors will be a gating factor; some larger distributors already on Prophet21/Epicor may have vendor solutions or require deeper integration."
+        }
+      },
+      "stage_2:_evidence_result": {
+        "verdict": "KILL",
+        "score": 0,
+        "signals": 0,
+        "evidence": {
+          "search_volume": {
+            "score": 0
+          },
+          "diy_demand": {
+            "score": 0
+          },
+          "job_postings": {
+            "score": 0
+          },
+          "competitor_gaps": {
+            "score": 0
+          },
+          "forums": {
+            "score": 0
+          },
+          "web_evidence": {
+            "score": 0
+          },
+          "cost_research": {
+            "score": 0
+          },
+          "market_size": {
+            "score": 0
+          }
+        }
+      },
+      "kill_reason": "Failed checks"
+    },
+    {
+      "business": "HVAC contractors with 15-40 technicians, $3-15M annual revenue",
+      "pain": "Tracking individual technician training certifications, licensing renewals and mandatory safety courses across multiple manufacturers/jurisdictions, risking compliance fines and job site removals",
+      "current_solution": "Mix of paper files, outlook calendar reminders, and basic spreadsheets with no automated alerts or verification system",
+      "whitespace_evidence": "HR platforms like BambooHR handle general training but not industry-specific certs. Field service software focuses on scheduling/dispatch but not certification management",
+      "estimated_cost": "$45,000+ (combining $15k in admin time, $20k in missed jobs due to expired certs, $10k+ regulatory fines)",
+      "id": 29,
+      "hash": "f1db6c797a68",
+      "generated_date": "2025-10-07",
+      "status": "killed_stage_2:_evidence",
+      "source_cluster": "Effective Staff Training and Management",
+      "stage_1:_white_space_result": {
+        "verdict": "PASS",
+        "analysis": {
+          "dominant_player": null,
+          "adjacent_platform": "ServiceTitan",
+          "adjacent_market_share": "35%",
+          "standalone_viable": true,
+          "switching_cost": "LOW",
+          "market_type": "WHITE_SPACE",
+          "decision": "PASS",
+          "reasoning": "1) Dominant-player check: General-purpose platforms listed (Salesforce, HubSpot, Monday.com, Asana, Slack, Shopify, QuickBooks, Xero, Stripe, Square) do not provide an out\u2011of\u2011the\u2011box, HVAC\u2011specific solution for tracking individual technician certifications, manufacturer credentials, jurisdictional licenses and recurring mandatory safety courses. They can be hacked together with manual workflows or spreadsheets, but they do not solve the regulatory/compliance tracking pain at scale \u2192 dominant_player null.  \n\n2) Adjacent platform: The HVAC field-service management category is the natural adjacent ecosystem. ServiceTitan is the leading mid\u2011market FSM for residential HVAC contractors in the target size band (15\u201340 techs, $3\u201315M). Other competitors include Housecall Pro, Jobber, FieldEdge and Service Fusion, but ServiceTitan has the largest penetration among mid\u2011market HVAC shops (estimated \u224835% share in that segment).  \n\n3) Standalone vs replace: A dedicated certification/compliance product can be built as a standalone app that integrates with FSM platforms (ServiceTitan, Housecall Pro, etc.) via API/webhooks to sync employee records, job assignments and alerts. Therefore it does not need to replace the customer's entire platform; integration is the practical go\u2011to route \u2192 standalone_viable = true.  \n\n4) Switching / migration burden: Because the solution can integrate rather than require full FSM replacement, switching cost is LOW. Typical customers currently track credentials in spreadsheets, PDFs or stubs in their FSM \u2014 migrating certification records (names, license numbers, expiry dates, attachments) into a dedicated tool is usually straightforward and can often be automated or completed in under a day for a single office. (If you tried to force customers to replace ServiceTitan/Housecall Pro entirely, migration would be HIGH, but that is unnecessary and not recommended.)  \n\n5) Market type & decision: There is clear white space \u2014 the problem is industry\u2011specific, compliance\u2011sensitive, and underserved by general platforms and by many FSMs (which either have limited training modules or inconsistent licensing features). Competitive incumbents exist but no single dominant specialist product has saturated this exact niche, so this is WHITE_SPACE and we recommend PASS.  \n\nCaveats: ServiceTitan and other FSMs may add deeper compliance/training modules over time or restrict integrations; estimate of market share is approximate and should be validated via primary research before go\u2011to\u2011market planning."
+        }
+      },
+      "stage_2:_evidence_result": {
+        "verdict": "KILL",
+        "score": 0,
+        "signals": 0,
+        "evidence": {
+          "search_volume": {
+            "score": 0
+          },
+          "diy_demand": {
+            "score": 0
+          },
+          "job_postings": {
+            "score": 0
+          },
+          "competitor_gaps": {
+            "score": 0
+          },
+          "forums": {
+            "score": 0
+          },
+          "web_evidence": {
+            "score": 0
+          },
+          "cost_research": {
+            "score": 0
+          },
+          "market_size": {
+            "score": 0
+          }
+        }
+      },
+      "kill_reason": "Failed checks"
+    },
+    {
+      "business": "Independent HVAC contractors ($2-10M revenue, 10-30 technicians)",
+      "pain": "Inability to accurately forecast seasonal part needs and labor costs for preventive maintenance contracts, leading to 15-25% budget overruns during peak seasons",
+      "current_solution": "Basic Excel spreadsheets tracking historical costs, manual calculations for new contract pricing, no integration with actual service data",
+      "whitespace_evidence": "ServiceTitan and FieldEdge handle dispatch and billing but lack predictive seasonal budgeting tools specific to PM contracts",
+      "estimated_cost": "$40,000-100,000 in unexpected labor costs and rush-ordered parts premiums",
+      "id": 30,
+      "hash": "14ed40c4eccf",
+      "generated_date": "2025-10-07",
+      "status": "killed_stage_2:_evidence",
+      "source_cluster": "Budget Preparation and Cost Control",
+      "stage_1:_white_space_result": {
+        "verdict": "PASS",
+        "analysis": {
+          "dominant_player": null,
+          "adjacent_platform": "ServiceTitan",
+          "adjacent_market_share": "35%",
+          "standalone_viable": true,
+          "switching_cost": "LOW",
+          "market_type": "FRAGMENTED",
+          "decision": "PASS",
+          "reasoning": "Task 1 \u2014 Dominant player check: None of the listed general-purpose tools (Salesforce, HubSpot, Monday.com, Asana, Slack, Shopify, QuickBooks, Xero, Stripe, Square) directly solve the specific pain of accurately forecasting seasonal parts needs and labor costs for preventive\u2011maintenance (PM) contracts for mid\u2011sized HVAC shops. Accounting tools (QuickBooks/Xero) handle money but not granular PM scheduling/parts forecasting tied to technicians; CRMs/project tools don't manage inventory + technician routing + PM contract cadence. Therefore none of those = direct blocking dominant player (dominant_player = null).\n\nTask 2 \u2014 Adjacent platform analysis: The de facto platforms for independent HVAC contractors in the $2\u201310M / 10\u201330 tech range are field\u2011service management systems \u2014 primarily ServiceTitan (also Housecall Pro, Jobber, FieldEdge, ServiceFusion). ServiceTitan is the closest adjacent platform: it covers PM contract management, scheduling, inventory and reporting and is widely used in this segment. Estimated market share among mid\u2011market US HVAC/field\u2011service shops is roughly 30\u201340% (we use ~35%) \u2014 significant but not exclusive. Other competitors take meaningful shares, so the market is not monopolized.\n\nTask 3 \u2014 Switching feasibility: A targeted forecasting product can be built as a standalone add\u2011on that integrates with field service platforms (ServiceTitan et al.) via APIs to pull: PM contract schedules, parts inventory, historical job/parts usage, technician hours/rates, payroll/labor burden, and planned schedules. That integration approach avoids replacing the core FSM/dispatch/accounting systems, so it is viable as a standalone product (standalone_viable = true). Practical considerations: ServiceTitan provides integration paths (and ecosystems) though access/partnering terms vary; building connectors for the top 2\u20133 FSM platforms will be necessary to address the addressable market.\n\nTask 4 \u2014 Data migration burden: Because the recommended approach is add\u2011on/integration rather than full platform replacement, migration burden is low: you ingest live contract/schedule/inventory data and historical job records through APIs (or lightweight exports). This is typically achievable without >1 week of per\u2011customer migration work (most customers can go live with connector + 1\u20133 days of setup and validation), so switching_cost = LOW. If a customer were to replace their entire FSM (ServiceTitan \u2192 new platform), that would be HIGH and would likely be a non\u2011starter for most shops \u2014 but that scenario is unnecessary for this product.\n\nOverall decision: PASS. Reason: There is a clear, addressable pain that incumbent generic tools do not solve and existing FSM platforms only partially solve (customers still report forecasting misses). A standalone forecasting/parts\u2011and\u2011labor planning product that integrates into ServiceTitan and other FSMs can materially reduce the 15\u201325% peak\u2011season overruns with low customer switching cost. Risks to manage: API access/partnership terms with FSM vendors, the need to support multiple FSMs (to reach scale), and building trust/validation with operators (show ROI via pilot projects)."
+        }
+      },
+      "stage_2:_evidence_result": {
+        "verdict": "KILL",
+        "score": 0,
+        "signals": 0,
+        "evidence": {
+          "search_volume": {
+            "score": 0
+          },
+          "diy_demand": {
+            "score": 0
+          },
+          "job_postings": {
+            "score": 0
+          },
+          "competitor_gaps": {
+            "score": 0
+          },
+          "forums": {
+            "score": 0
+          },
+          "web_evidence": {
+            "score": 0
+          },
+          "cost_research": {
+            "score": 0
+          },
+          "market_size": {
+            "score": 0
+          }
+        }
+      },
+      "kill_reason": "Failed checks"
+    },
+    {
+      "business": "Independent HVAC contractors ($2-10M revenue, 10-30 technicians)",
+      "pain": "Lost revenue from incorrect tech-to-job matching based on certifications and equipment expertise, leading to return visits and warranty claims when wrong tech is dispatched",
+      "current_solution": "Paper logs or basic dispatch software tracking only availability, not matching tech expertise to specific equipment brands/models. Manual checking of tech certifications.",
+      "whitespace_evidence": "ServiceTitan and FieldEdge focus on scheduling/dispatch but lack automated expertise matching. No major solution automatically pairs tech certifications/experience with specific equipment types.",
+      "estimated_cost": "$45,000+ ($1,500 per incorrect dispatch \u00d7 ~30 mismatches/year in lost time, return visits, and warranty claim denials)",
+      "id": 31,
+      "hash": "2a3b7379e062",
+      "generated_date": "2025-10-07",
+      "status": "killed_stage_2:_evidence",
+      "source_cluster": "Scheduling and Dispatch Optimization",
+      "stage_1:_white_space_result": {
+        "verdict": "PASS",
+        "analysis": {
+          "dominant_player": "ServiceTitan",
+          "adjacent_platform": "ServiceTitan",
+          "adjacent_market_share": "50%",
+          "standalone_viable": true,
+          "switching_cost": "LOW",
+          "market_type": "FRAGMENTED",
+          "decision": "PASS",
+          "reasoning": "Task 1 (Dominant player check): The specific pain \u2014 accurately matching technician certifications/equipment expertise to a job to avoid return visits and warranty claims \u2014 is not effectively solved by the general-purpose tools listed (HubSpot, Monday.com, Asana, Slack, Shopify, QuickBooks, Xero, Stripe, Square). Salesforce Field Service Lightning can technically provide skill-based routing, asset/context-aware work orders, and dispatch optimization, but it is not the practical incumbent within the independent HVAC SMB segment ($2\u201310M, 10\u201330 techs). In this vertical the clear dominant vertical player is ServiceTitan (and other trade-focused platforms like Housecall Pro, Jobber, FieldEdge). Because the HVAC market uses trade-specific platforms, mark the dominant player as ServiceTitan. Task 2 (Adjacent platform): HVAC contractors of this size typically run their operations (dispatch, tech profiles, asset records, job history, invoicing) in ServiceTitan or similar HVAC/service management platforms. Task 3 (Switching feasibility): A focused product that provides improved certification/equipment-skilled matching can be built as a standalone augmentation that integrates with ServiceTitan via API/webhooks to read tech profiles, job/asset requirements and to push dispatch recommendations or work-order tags. ServiceTitan exposes integrations and third-party partners, so an add-on approach is viable; it does not require replacing the entire platform. Task 4 (Data migration burden): Because the recommended route is integration rather than full replacement, migration is minimal (syncing tech profiles and job templates via APIs or small CSV imports). This is typically a <1 day practical effort for accessible fields (or a few days for robust syncing), so switching cost is LOW if you position as an integratable augmentation. Market type and decision: The market is FRAGMENTED \u2014 there are a few strong vertical incumbents (ServiceTitan is a leader) but no single monopoly that fully blocks innovation. Because a standalone, integrated solution is technically feasible and switching/migration burden is low, the project should PASS. Caveats and caveats: - If targeting customers who already use Salesforce Field Service (rare in this SMB HVAC segment), the problem may already be addressable within that product; pursuing large-scale competition with Salesforce would be infeasible. - Some large shops may rely heavily on ServiceTitan for dispatch logic; you need to ensure your product complements rather than duplicates (i.e., provides better certification-to-equipment matching, predictive warranty-risk scoring, or a superior UX for dispatchers). - Estimated adjacent_market_share (50%) is a directional estimate for ServiceTitan's penetration in mid-market home-service/heating & cooling software and should be validated with primary research. If validated and ServiceTitan coverage is higher in your target cohort, integration strategy becomes even more important."
+        }
+      },
+      "stage_2:_evidence_result": {
+        "verdict": "KILL",
+        "score": 0,
+        "signals": 0,
+        "evidence": {
+          "search_volume": {
+            "score": 0
+          },
+          "diy_demand": {
+            "score": 0
+          },
+          "job_postings": {
+            "score": 0
+          },
+          "competitor_gaps": {
+            "score": 0
+          },
+          "forums": {
+            "score": 0
+          },
+          "web_evidence": {
+            "score": 0
+          },
+          "cost_research": {
+            "score": 0
+          },
+          "market_size": {
+            "score": 0
+          }
+        }
+      },
+      "kill_reason": "Failed checks"
+    },
+    {
+      "business": "Independent HVAC distributors ($2-10M revenue, serving 50-200 contractor customers)",
+      "pain": "Tracking real-time parts availability across multiple manufacturer warehouses to prevent emergency stockouts for contractor customers, leading to lost sales and contractor relationship damage",
+      "current_solution": "Manual checking of manufacturer portals + basic ERP inventory counts, no integration or automation, causing 2-3 hour delays in confirming availability",
+      "whitespace_evidence": "Major ERPs like Eclipse and Prophet 21 track internal inventory but don't integrate real-time manufacturer warehouse availability. No dominant specialized solution exists.",
+      "estimated_cost": "$75,000+ ($50k in lost emergency sales, $25k in expedited shipping costs and staff time spent manually checking)",
+      "id": 32,
+      "hash": "017ac77e3512",
+      "generated_date": "2025-10-07",
+      "status": "killed_stage_2:_evidence",
+      "source_cluster": "Inventory and Supply Chain Management",
+      "stage_1:_white_space_result": {
+        "verdict": "PASS",
+        "analysis": {
+          "dominant_player": null,
+          "adjacent_platform": "QuickBooks (often paired with Fishbowl or Acctivate for inventory); larger independents may use Epicor/Prophet21 or NetSuite",
+          "adjacent_market_share": "60%",
+          "standalone_viable": true,
+          "switching_cost": "LOW",
+          "market_type": "WHITE_SPACE",
+          "decision": "PASS",
+          "reasoning": "Task 1 (Dominant player): None of the listed general-purpose tools (Salesforce, HubSpot, Monday.com, Asana, Slack, Shopify, QuickBooks, Xero, Stripe, Square) provide a turnkey solution for real-time, cross-manufacturer parts availability across multiple manufacturer warehouses for independent HVAC distributors. QuickBooks shows up in the list but by itself is an accounting tool; inventory visibility across many manufacturers' warehouses and live manufacturer stock feeds is not a solved problem in those platforms \u2014 so there is no single dominant incumbent that precludes a new entrant.\\n\\nTask 2 (Adjacent platforms): Small independent HVAC distributors in the $2\u201310M band most commonly run QuickBooks for accounting and add inventory modules like Fishbowl or Acctivate for stock management. Larger independents may use distribution ERPs such as Epicor/Prophet21, Acumatica, or NetSuite. Contractor customers (end users) often use ServiceTitan, but that is for service ops, not distributor inventory sourcing. I estimate QuickBooks + QuickBooks-integrated inventory tools account for roughly 60%+ of this small-distributor segment.\\n\\nTask 3 (Switching feasibility): A standalone product is viable. The realistic go-to-market is a lightweight SaaS connector/portal that aggregates manufacturer stock (via APIs/EDI/CSV/portal scraping where necessary) and exposes live availability to distributor users and their contractor customers, while integrating with the distributor's existing systems (QuickBooks, Fishbowl, Acctivate, or larger ERP via APIs). Replacing a distributor's ERP would be high friction, but most customers will accept an integrated overlay that preserves their accounting/ERP.\\n\\nTask 4 (Data migration burden): Because the approach is integration-first (no ERP replacement), migration is limited to SKU mapping, initial catalog syncs and connector configuration. For the bulk of target customers this can be completed in hours\u2013a few days (<1 week) \u2014 so switching/migration burden is LOW. (Exceptions: distributors on very old/custom ERPs with no integration options increase effort, but these are a minority.)\\n\\nOverall assessment: The market represents white space. There is no dominant, focused solution for the specific problem of real-time cross-manufacturer parts visibility for small HVAC distributors; adjacent tools are fragmented and often manual. A standalone SaaS aggregator that integrates into QuickBooks/inventory modules and manufacturer feeds is feasible and has low switching cost for the core target segment \u2014 recommendation: PASS.\\n\\nKey risks & considerations: manufacturer API access/policy variability and legal/partner restrictions; need to support multiple feed types (API, EDI, CSV, portal scraping); getting critical mass of manufacturer connectors will be a gating factor; some larger distributors already on Prophet21/Epicor may have vendor solutions or require deeper integration."
+        }
+      },
+      "stage_2:_evidence_result": {
+        "verdict": "KILL",
+        "score": 0,
+        "signals": 0,
+        "evidence": {
+          "search_volume": {
+            "score": 0
+          },
+          "diy_demand": {
+            "score": 0
+          },
+          "job_postings": {
+            "score": 0
+          },
+          "competitor_gaps": {
+            "score": 0
+          },
+          "forums": {
+            "score": 0
+          },
+          "web_evidence": {
+            "score": 0
+          },
+          "cost_research": {
+            "score": 0
+          },
+          "market_size": {
+            "score": 0
+          }
+        }
+      },
+      "kill_reason": "Failed checks"
     }
   ]
 }
