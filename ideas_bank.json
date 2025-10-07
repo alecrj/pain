@@ -242,6 +242,292 @@
       "generated_date": "2025-10-07",
       "status": "killed_stage1",
       "kill_reason": "TASK 1 \u2014 Check for Dominant Players (from your list)\n- Do any of these solve the pain out-of-the-box? No.\n  - Salesforce could be configured (Field Service / Assets) to track equipment, warranties and service history, but it is not a purpose-built restaurant equipment warranty/calibration solution and would require significant customization and integrations. HubSpot, Monday.com, Asana, Slack, Shopify, QuickBooks, Xero, Stripe, Square do not natively solve warranty + calibration + food-safety maintenance for multi-site restaurant kitchens. \n- Conclusion: None of the named consumer/CRM/ops incumbents fully own this niche \u2192 PASS for white-space check.\n\nTASK 2 \u2014 Market structure (what you'd find searching for this problem)\n- Typical results you would see:\n  - General CMMS / facilities-management vendors that target multi-site retail & restaurant customers (ServiceChannel, UpKeep, Fiix, Hippo CMMS, eMaint / Fluke).\n  - Facility / vendor management marketplaces for chains (ServiceChannel, Corrigo).\n  - Foodservice ops & compliance checklist apps for restaurants (Jolt, Compeat\u2019s modules, other ops-checklist/HACCP apps) that track temperature logs and routine checks but don\u2019t always manage warranties/service history comprehensively.\n  - IoT/temperature monitoring vendors and calibration-specialists for food-safety devices (various niche providers).\n- Categorization: SATURATED \u2014 there are multiple established CMMS / facilities-management players and ops/compliance tools addressing pieces of the problem (more than a handful of recognizable vendors, several with substantial customer bases and many reviews). This is not a clean white-space where everyone uses spreadsheets.\n\nTASK 3 \u2014 Current \"Solutions\" used by restaurant groups now\n- Most common: A hybrid approach:\n  - Larger chains: enterprise CMMS / facilities-management platforms (ServiceChannel, UpKeep, Fiix or even SAP/Maximo/EAM) and third-party service vendors for warranty/admin.\n  - Mid-size and small groups: duct-taped combination of spreadsheets, Google Sheets, work-order emails/phone calls, simple task trackers (Monday/Asana), and standalone checklists or food-safety apps (Jolt) \u2014 often manual proof-of-service, photos, PDFs of warranties.\n  - Some sites use dedicated IoT temperature/calibration sensors (separate vendors) but those often don\u2019t connect to warranty/service history workflows.\n- Conclusion: Multiple duct-taped tools + spreadsheets is the dominant reality for many; enterprise customers use CMMS/EAM.\n\nANALYSIS (2\u20133 paragraphs)\n1) Would Salesforce/HubSpot/etc. handle this pain as a feature?\nSalesforce (Field Service + Asset Management) could be configured to track assets, warranties, work orders and service history, and to route technicians \u2014 so technically it can address most elements, but only after significant customization, integrations to warranty/service vendor data, and likely add-on modules. HubSpot, QuickBooks, Shopify and the lightweight task tools (Asana/Monday) are not purpose-built for asset lifecycle, calibration logs or HACCP-style food-safety compliance and therefore are poor fits unless heavily retrofitted with bespoke processes. In short: enterprise platforms could be made to work but they are not turnkey solutions for kitchen-equipment warranty + calibration + food-safety risk in restaurants.\n\n2) Are there 3+ funded startups attacking this specific problem?\nThere are multiple well-established and funded companies in the broader equipment maintenance / facilities management / CMMS space (ServiceChannel, UpKeep, Fiix, Hippo, eMaint, MaintainX, etc.), plus several restaurant-focused ops/compliance apps (Jolt, Compeat modules) and IoT/calibration vendors. Many of these are well-funded or backed by larger acquirers and have substantial market traction and reviews. While no single consumer SaaS (from your list) dominates, the combined set of CMMS and ops/compliance vendors make this a competitive category.\n\n3) Likely current solution?\nLarge restaurant groups: enterprise CMMS / facility/vendor-management platforms and third-party service vendors. Smaller groups: spreadsheets, manual logs, and point apps (checklist/HACCP/temperature) sometimes stitched to task trackers. So the prevailing reality is fragmentation and hybrid solutions.\n\nVERDICT\n- Type: SATURATED\n- Dominant Player: No single monopoly; ServiceChannel / UpKeep / Fiix / Hippo are the incumbent cohort\n- Market Assessment: Multiple established CMMS and facilities-management vendors (plus ops/compliance apps and IoT vendors) already address parts or all of this problem; larger chains already buy into these platforms while smaller operators limp along with spreadsheets and checklists.\n- Decision: KILL\n- Reasoning: The maintenance/warranty/calibration problem for multi-site foodservice is already served by several well-funded, feature-rich CMMS and facilities-management vendors (and by enterprise EAM providers for very large customers). There is not a clean, untapped white space \u2014 new entrants would compete with incumbents that offer integrated work-order, asset, vendor and contract management and already have restaurant/retail customer bases; success would require either deep vertical specialization + seamless integrations with IoT/calibration and vendor networks, or an uncommonly compelling lower-cost alternative that fixes current incumbent pain points.\n\nIf you want, I can:\n- Map the top 8 vendors (features, pricing signal, review counts) and show precisely where gaps remain (warranty linkage, calibration logs, HACCP compliance, vendor SLA enforcement), or\n- Sketch a possible niche product positioning that could win (e.g., calibration + HACCP-first workflow + warranty auto-claims + lightweight CMMS integrations). Which would be more useful?"
+    },
+    {
+      "business": "Regional food distributors ($10-50M revenue) serving 50-200 restaurants",
+      "pain": "Tracking temperature-sensitive inventory across multiple cold storage zones and delivery trucks, leading to spoilage and compliance violations",
+      "current_solution": "Manual temperature logs, basic cooler alarms, and paper-based receiving forms with no real-time visibility",
+      "whitespace_evidence": "Major WMS systems like Manhattan/HighJump focus on general warehouse management but lack specialized cold chain tracking. IoT solutions exist but aren't integrated with inventory/delivery systems",
+      "estimated_cost": "$75,000+ (combining $45K in spoilage, $20K compliance reporting labor, $10K+ risk of FDA fines)",
+      "id": 33,
+      "hash": "79d4ca1d56e2",
+      "generated_date": "2025-10-07",
+      "status": "killed_stage_2:_evidence",
+      "source_cluster": "Supply Chain and Inventory Management",
+      "stage_1:_white_space_result": {
+        "verdict": "PASS",
+        "analysis": {
+          "dominant_player": null,
+          "adjacent_platform": "Samsara",
+          "adjacent_market_share": "\u224820%",
+          "standalone_viable": true,
+          "switching_cost": "LOW",
+          "market_type": "WHITE_SPACE",
+          "decision": "PASS",
+          "reasoning": "Dominant player check: None of the listed mainstream SaaS tools (Salesforce, HubSpot, Monday.com, Asana, Slack, Shopify, QuickBooks, Xero, Stripe, Square) provide an end-to-end solution for temperature-sensitive inventory tracking across multiple cold-storage zones plus refrigerated fleet telemetry and perishable-inventory compliance. These platforms cover CRM, payments, accounting, or task management\u2014not cold-chain telemetry + zone-level inventory/expiry control, so there is no immediate 'kill' for competition with a dominant vendor from that list.\n\nAdjacent platform: The closest existing category is fleet telematics and environmental-sensor platforms (e.g., Samsara, Geotab, Motive, Sensitech, Monnit). Samsara is frequently used by regional distributors for refrigerated fleet monitoring and offers temperature sensors, geofencing, alerts, and APIs, making it the best single adjacent platform example. For inventory workflows, distributors commonly use WMS/ERPs (NetSuite, Acumatica, local distribution WMS). Route/delivery platforms (Onfleet, Route4Me) also touch the delivery side.\n\nSwitching feasibility: A practical go-to-market is a standalone product that integrates with the adjacent platforms via APIs (e.g., ingest temperature telemetry from Samsara, inventory and SKUs from the WMS/ERP, and routing/stop data from Onfleet/route platforms). That approach avoids replacing entrenched ERP/WMS or fleet providers and keeps switching friction low. Most modern telematics and WMS vendors provide APIs/webhooks, so integration is feasible and allows value-added features (zone-level tagging, expiry/first-expire-first-out enforcement, automated compliance logs, exception workflows, driver alerts).\n\nData migration burden: Because the recommended approach is integration rather than wholesale replacement, migration is minimal (<1 day for configurations and API key setup; ongoing syncs for historical records if desired). If a distributor insisted on replacing their ERP/WMS or telematics vendor, migration would be substantial (>1 week) and a high switching cost \u2014 that route is not recommended for initial adoption.\n\nConclusion: This is effectively a white-space opportunity. There are adjacent solutions that cover pieces of the problem (fleet telemetry, sensors, WMS), but no dominant end-to-end platform targeting regional food distributors with integrated multi-zone cold storage + refrigerated-truck inventory + compliance workflows. A standalone, API-first product that integrates with Samsara (and common WMS/ERP systems and route platforms) is viable and faces LOW switching cost for customers, so PASS."
+        }
+      },
+      "stage_2:_evidence_result": {
+        "verdict": "KILL",
+        "score": 5,
+        "signals": 1,
+        "evidence": {
+          "search_volume": {
+            "score": 0
+          },
+          "diy_demand": {
+            "score": 0
+          },
+          "job_postings": {
+            "score": 0
+          },
+          "competitor_gaps": {
+            "score": 0
+          },
+          "forums": {
+            "score": 0
+          },
+          "web_evidence": {
+            "score": 0
+          },
+          "cost_research": {
+            "cost_estimates": [
+              "$45.23 billion market size for temperature-controlled packaging solutions in 2025 indicating high capital investment requirements across the cold chain[5]",
+              "Refrigeration increases operating costs by 16% over ambient storage, with compressor losses adding another 8%, impacting cold storage and transport cost structures[3]",
+              "Smaller operators experience up to 14% downtime due to servicing delays and equipment reliability issues in cold chain equipment influencing operational costs[3]",
+              "Energy and maintenance costs constitute a significant portion of cold chain operations, with cold storage and refrigerated trucks being energy-intensive[2][3]",
+              "Global food cold chain market estimated at USD 59.37 billion in 2024, with the restaurants segment (relevant to regional food distributors serving restaurants) holding 46.7% market share in cold storage and transport infrastructure investment[4]"
+            ],
+            "sources": [
+              "PMC article on temperature control in food cold chain emphasizes losses due to temperature abuse and highlights technology/system investment needs[1]",
+              "MarketsandMarkets cold chain market report discusses capital and energy cost challenges in refrigerated transport and storage facilities[2]",
+              "Future Market Insights details refrigeration operational cost increases, downtime statistics, and equipment servicing impact on smaller cold chain operators[3]",
+              "Grand View Research market report shows food cold chain market size, restaurant segment share, and growth of monitoring technology investments[4]",
+              "Toward Packaging report projects large market size for temperature-controlled packaging driven by fresh/frozen food demand and outlines high initial technology costs[5]"
+            ],
+            "has_third_party_validation": true,
+            "score": 5
+          },
+          "market_size": {
+            "score": 0
+          }
+        }
+      },
+      "kill_reason": "Failed checks"
+    },
+    {
+      "business": "Mid-size regional trucking fleets (25-100 trucks, $5-30M revenue)",
+      "pain": "No real-time visibility into temperature fluctuations for refrigerated loads during transit, leading to rejected deliveries and spoilage claims",
+      "current_solution": "Basic GPS tracking with manual temperature logs at checkpoints, 4-8 hour gaps between readings",
+      "whitespace_evidence": "Major fleet management systems (Omnitracs, Samsara) focus on location/ELD compliance but lack granular temp monitoring with predictive alerts",
+      "estimated_cost": "$75,000+ ($15k in spoilage claims, $40k in rejected loads, $20k in extra fuel from overcooling)",
+      "id": 34,
+      "hash": "5470ed53614d",
+      "generated_date": "2025-10-07",
+      "status": "killed_stage_2:_evidence",
+      "source_cluster": "Real-Time Operational Data Visibility",
+      "stage_1:_white_space_result": {
+        "verdict": "PASS",
+        "analysis": {
+          "dominant_player": null,
+          "adjacent_platform": "Samsara",
+          "adjacent_market_share": "\u224825%",
+          "standalone_viable": true,
+          "switching_cost": "LOW",
+          "market_type": "WHITE_SPACE",
+          "decision": "PASS",
+          "reasoning": "1) Dominant player check: None of the listed platforms (Salesforce, HubSpot, Monday, Asana, Slack, Shopify, QuickBooks, Xero, Stripe, Square) provide purpose-built, real\u2011time refrigerated load temperature telemetry and alerting for in\u2011transit reefer loads, so no kill on that basis. 2) Adjacent platform: Mid\u2011size regional fleets commonly run fleet telematics / ELD / trailer monitoring platforms such as Samsara (also Geotab, Motive, ORBCOMM). Samsara is widely adopted in the mid\u2011market fleet segment and is the most relevant adjacent platform for related workflows (GPS, ELD, sensor integration, alerts). Estimated share in the mid\u2011market telematics space is roughly ~25% (order\u2011of\u2011magnitude estimate based on vendor visibility in this segment). 3) Switching feasibility: A specialist temperature\u2011monitoring solution (IoT sensors + cloud app + alerting/dashboards) can be built as a standalone product and integrated into existing telematics platforms via APIs or webhook integrations (fleet and location context, driver/asset IDs, event forwarding). That avoids replacing the fleet\u2019s core telematics platform, so the tool can be additive. 4) Data migration burden: Because the approach is integration-first (no full platform replacement), required data migration is minimal (device pairing and configuration, plus optional historical data sync) \u2014 effectively <1 day for operational rollout in most fleets. 5) Conclusion: Low switching cost and an integration path mean this is a viable go\u2011to\u2011market (PASS). Market characterization: WHITE_SPACE \u2014 there are specialist cold\u2011chain vendors, but within the mid\u2011market regional trucking segment there is a gap for simple, low\u2011friction, real\u2011time temperature anomaly detection and workflow (alerts + evidence package) that integrates with existing telematics stacks. Recommendation: pursue an API\u2011first standalone product that supports common telematics integrations (Samsara, Geotab, ORBCOMM, Motive), plus plug\u2011and\u2011play sensor options and a clear alert/claims workflow to demonstrate ROI quickly."
+        }
+      },
+      "stage_2:_evidence_result": {
+        "verdict": "KILL",
+        "score": 5,
+        "signals": 1,
+        "evidence": {
+          "search_volume": {
+            "score": 0
+          },
+          "diy_demand": {
+            "score": 0
+          },
+          "job_postings": {
+            "score": 0
+          },
+          "competitor_gaps": {
+            "score": 0
+          },
+          "forums": {
+            "score": 0
+          },
+          "web_evidence": {
+            "score": 0
+          },
+          "cost_research": {
+            "cost_estimates": [
+              "**$4000+ per year in fuel costs plus $1500+ in maintenance per refrigerated truck** (reefer unit) due to continuous operation needed to maintain temperature control, increasing operational overhead for mid-size trucking fleets[1]",
+              "**~$2.47 per mile in operational cost for refrigerated trucks**, typically higher than dry vans, leading to significant cost impact over routes[3]",
+              "**Temperature fluctuations can spoil up to 20% of perishable goods** during transit, causing direct financial losses from product waste or discounts needed to mitigate quality issues[3]",
+              "Losses from product spoilage due to undetected temperature swings with estimated shipment values at risk reaching up to **$120,000 per load** in some cases[3]"
+            ],
+            "sources": [
+              "Weber Logistics: Controlling Costs for Refrigerated Trucking (fuel and maintenance costs for reefers)[1]",
+              "ATS Inc: Temperature Impact on Reefer Freight Rates (fuel usage impact on pricing)[2]",
+              "Tive Blog: Why Reefer Trucks Alone Aren't Enough for Temperature Control (temperature swings causing spoilage and cost impact)[3]",
+              "Ship North America: Factors Affecting Refrigerated Shipping Costs (weather, fuel prices raising costs)[4]",
+              "TechRig Guide: Reefer Trucking Costs and Technology Overview[5]"
+            ],
+            "has_third_party_validation": true,
+            "score": 5
+          },
+          "market_size": {
+            "score": 0
+          }
+        }
+      },
+      "kill_reason": "Failed checks"
+    },
+    {
+      "business": "Regional food distributors ($10-50M revenue) serving 50-200 restaurants",
+      "pain": "Tracking temperature-sensitive inventory across multiple cold storage zones and delivery trucks, leading to spoilage and compliance violations",
+      "current_solution": "Manual temperature logs, basic cooler alarms, and paper-based receiving forms with no real-time visibility",
+      "whitespace_evidence": "Major WMS systems like Manhattan/HighJump focus on general warehouse management but lack specialized cold chain tracking. IoT solutions exist but aren't integrated with inventory/delivery systems",
+      "estimated_cost": "$75,000+ (combining $45K in spoilage, $20K compliance reporting labor, $10K+ risk of FDA fines)",
+      "id": 33,
+      "hash": "79d4ca1d56e2",
+      "generated_date": "2025-10-07",
+      "status": "killed_stage_2:_evidence",
+      "source_cluster": "Supply Chain and Inventory Management",
+      "stage_1:_white_space_result": {
+        "verdict": "PASS",
+        "analysis": {
+          "dominant_player": null,
+          "adjacent_platform": "Samsara",
+          "adjacent_market_share": "\u224820%",
+          "standalone_viable": true,
+          "switching_cost": "LOW",
+          "market_type": "WHITE_SPACE",
+          "decision": "PASS",
+          "reasoning": "Dominant player check: None of the listed mainstream SaaS tools (Salesforce, HubSpot, Monday.com, Asana, Slack, Shopify, QuickBooks, Xero, Stripe, Square) provide an end-to-end solution for temperature-sensitive inventory tracking across multiple cold-storage zones plus refrigerated fleet telemetry and perishable-inventory compliance. These platforms cover CRM, payments, accounting, or task management\u2014not cold-chain telemetry + zone-level inventory/expiry control, so there is no immediate 'kill' for competition with a dominant vendor from that list.\n\nAdjacent platform: The closest existing category is fleet telematics and environmental-sensor platforms (e.g., Samsara, Geotab, Motive, Sensitech, Monnit). Samsara is frequently used by regional distributors for refrigerated fleet monitoring and offers temperature sensors, geofencing, alerts, and APIs, making it the best single adjacent platform example. For inventory workflows, distributors commonly use WMS/ERPs (NetSuite, Acumatica, local distribution WMS). Route/delivery platforms (Onfleet, Route4Me) also touch the delivery side.\n\nSwitching feasibility: A practical go-to-market is a standalone product that integrates with the adjacent platforms via APIs (e.g., ingest temperature telemetry from Samsara, inventory and SKUs from the WMS/ERP, and routing/stop data from Onfleet/route platforms). That approach avoids replacing entrenched ERP/WMS or fleet providers and keeps switching friction low. Most modern telematics and WMS vendors provide APIs/webhooks, so integration is feasible and allows value-added features (zone-level tagging, expiry/first-expire-first-out enforcement, automated compliance logs, exception workflows, driver alerts).\n\nData migration burden: Because the recommended approach is integration rather than wholesale replacement, migration is minimal (<1 day for configurations and API key setup; ongoing syncs for historical records if desired). If a distributor insisted on replacing their ERP/WMS or telematics vendor, migration would be substantial (>1 week) and a high switching cost \u2014 that route is not recommended for initial adoption.\n\nConclusion: This is effectively a white-space opportunity. There are adjacent solutions that cover pieces of the problem (fleet telemetry, sensors, WMS), but no dominant end-to-end platform targeting regional food distributors with integrated multi-zone cold storage + refrigerated-truck inventory + compliance workflows. A standalone, API-first product that integrates with Samsara (and common WMS/ERP systems and route platforms) is viable and faces LOW switching cost for customers, so PASS."
+        }
+      },
+      "stage_2:_evidence_result": {
+        "verdict": "KILL",
+        "score": 5,
+        "signals": 1,
+        "evidence": {
+          "search_volume": {
+            "score": 0
+          },
+          "diy_demand": {
+            "score": 0
+          },
+          "job_postings": {
+            "score": 0
+          },
+          "competitor_gaps": {
+            "score": 0
+          },
+          "forums": {
+            "score": 0
+          },
+          "web_evidence": {
+            "score": 0
+          },
+          "cost_research": {
+            "cost_estimates": [
+              "$45.23 billion market size for temperature-controlled packaging solutions in 2025 indicating high capital investment requirements across the cold chain[5]",
+              "Refrigeration increases operating costs by 16% over ambient storage, with compressor losses adding another 8%, impacting cold storage and transport cost structures[3]",
+              "Smaller operators experience up to 14% downtime due to servicing delays and equipment reliability issues in cold chain equipment influencing operational costs[3]",
+              "Energy and maintenance costs constitute a significant portion of cold chain operations, with cold storage and refrigerated trucks being energy-intensive[2][3]",
+              "Global food cold chain market estimated at USD 59.37 billion in 2024, with the restaurants segment (relevant to regional food distributors serving restaurants) holding 46.7% market share in cold storage and transport infrastructure investment[4]"
+            ],
+            "sources": [
+              "PMC article on temperature control in food cold chain emphasizes losses due to temperature abuse and highlights technology/system investment needs[1]",
+              "MarketsandMarkets cold chain market report discusses capital and energy cost challenges in refrigerated transport and storage facilities[2]",
+              "Future Market Insights details refrigeration operational cost increases, downtime statistics, and equipment servicing impact on smaller cold chain operators[3]",
+              "Grand View Research market report shows food cold chain market size, restaurant segment share, and growth of monitoring technology investments[4]",
+              "Toward Packaging report projects large market size for temperature-controlled packaging driven by fresh/frozen food demand and outlines high initial technology costs[5]"
+            ],
+            "has_third_party_validation": true,
+            "score": 5
+          },
+          "market_size": {
+            "score": 0
+          }
+        }
+      },
+      "kill_reason": "Failed checks"
+    },
+    {
+      "business": "Mid-size regional trucking fleets (25-100 trucks, $5-30M revenue)",
+      "pain": "No real-time visibility into temperature fluctuations for refrigerated loads during transit, leading to rejected deliveries and spoilage claims",
+      "current_solution": "Basic GPS tracking with manual temperature logs at checkpoints, 4-8 hour gaps between readings",
+      "whitespace_evidence": "Major fleet management systems (Omnitracs, Samsara) focus on location/ELD compliance but lack granular temp monitoring with predictive alerts",
+      "estimated_cost": "$75,000+ ($15k in spoilage claims, $40k in rejected loads, $20k in extra fuel from overcooling)",
+      "id": 34,
+      "hash": "5470ed53614d",
+      "generated_date": "2025-10-07",
+      "status": "killed_stage_2:_evidence",
+      "source_cluster": "Real-Time Operational Data Visibility",
+      "stage_1:_white_space_result": {
+        "verdict": "PASS",
+        "analysis": {
+          "dominant_player": null,
+          "adjacent_platform": "Samsara",
+          "adjacent_market_share": "\u224825%",
+          "standalone_viable": true,
+          "switching_cost": "LOW",
+          "market_type": "WHITE_SPACE",
+          "decision": "PASS",
+          "reasoning": "1) Dominant player check: None of the listed platforms (Salesforce, HubSpot, Monday, Asana, Slack, Shopify, QuickBooks, Xero, Stripe, Square) provide purpose-built, real\u2011time refrigerated load temperature telemetry and alerting for in\u2011transit reefer loads, so no kill on that basis. 2) Adjacent platform: Mid\u2011size regional fleets commonly run fleet telematics / ELD / trailer monitoring platforms such as Samsara (also Geotab, Motive, ORBCOMM). Samsara is widely adopted in the mid\u2011market fleet segment and is the most relevant adjacent platform for related workflows (GPS, ELD, sensor integration, alerts). Estimated share in the mid\u2011market telematics space is roughly ~25% (order\u2011of\u2011magnitude estimate based on vendor visibility in this segment). 3) Switching feasibility: A specialist temperature\u2011monitoring solution (IoT sensors + cloud app + alerting/dashboards) can be built as a standalone product and integrated into existing telematics platforms via APIs or webhook integrations (fleet and location context, driver/asset IDs, event forwarding). That avoids replacing the fleet\u2019s core telematics platform, so the tool can be additive. 4) Data migration burden: Because the approach is integration-first (no full platform replacement), required data migration is minimal (device pairing and configuration, plus optional historical data sync) \u2014 effectively <1 day for operational rollout in most fleets. 5) Conclusion: Low switching cost and an integration path mean this is a viable go\u2011to\u2011market (PASS). Market characterization: WHITE_SPACE \u2014 there are specialist cold\u2011chain vendors, but within the mid\u2011market regional trucking segment there is a gap for simple, low\u2011friction, real\u2011time temperature anomaly detection and workflow (alerts + evidence package) that integrates with existing telematics stacks. Recommendation: pursue an API\u2011first standalone product that supports common telematics integrations (Samsara, Geotab, ORBCOMM, Motive), plus plug\u2011and\u2011play sensor options and a clear alert/claims workflow to demonstrate ROI quickly."
+        }
+      },
+      "stage_2:_evidence_result": {
+        "verdict": "KILL",
+        "score": 5,
+        "signals": 1,
+        "evidence": {
+          "search_volume": {
+            "score": 0
+          },
+          "diy_demand": {
+            "score": 0
+          },
+          "job_postings": {
+            "score": 0
+          },
+          "competitor_gaps": {
+            "score": 0
+          },
+          "forums": {
+            "score": 0
+          },
+          "web_evidence": {
+            "score": 0
+          },
+          "cost_research": {
+            "cost_estimates": [
+              "**$4000+ per year in fuel costs plus $1500+ in maintenance per refrigerated truck** (reefer unit) due to continuous operation needed to maintain temperature control, increasing operational overhead for mid-size trucking fleets[1]",
+              "**~$2.47 per mile in operational cost for refrigerated trucks**, typically higher than dry vans, leading to significant cost impact over routes[3]",
+              "**Temperature fluctuations can spoil up to 20% of perishable goods** during transit, causing direct financial losses from product waste or discounts needed to mitigate quality issues[3]",
+              "Losses from product spoilage due to undetected temperature swings with estimated shipment values at risk reaching up to **$120,000 per load** in some cases[3]"
+            ],
+            "sources": [
+              "Weber Logistics: Controlling Costs for Refrigerated Trucking (fuel and maintenance costs for reefers)[1]",
+              "ATS Inc: Temperature Impact on Reefer Freight Rates (fuel usage impact on pricing)[2]",
+              "Tive Blog: Why Reefer Trucks Alone Aren't Enough for Temperature Control (temperature swings causing spoilage and cost impact)[3]",
+              "Ship North America: Factors Affecting Refrigerated Shipping Costs (weather, fuel prices raising costs)[4]",
+              "TechRig Guide: Reefer Trucking Costs and Technology Overview[5]"
+            ],
+            "has_third_party_validation": true,
+            "score": 5
+          },
+          "market_size": {
+            "score": 0
+          }
+        }
+      },
+      "kill_reason": "Failed checks"
     }
   ]
 }

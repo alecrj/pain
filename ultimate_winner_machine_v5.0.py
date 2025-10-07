@@ -11,7 +11,7 @@ WHAT'S NEW IN v5.0:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 STAGE 0: PAIN MINING (NEW)
   - Scrape real complaints from jobs/forums/Reddit/G2
-  - o1-preview clusters patterns → finds recurring problems
+  - gpt-4o clusters patterns → finds recurring problems
   - Claude 3.5 Sonnet specifies ideas → hyper-specific
 
 STAGE 1: WHITE SPACE + SWITCHING COST (ENHANCED)
@@ -220,7 +220,7 @@ def call_perplexity(prompt: str) -> str:
     time.sleep(1)
     try:
         response = perplexity_client.chat.completions.create(
-            model="llama-3.1-sonar-small-128k-online",  # Fixed model name
+            model="sonar",  # Updated to current model name (Feb 2025)
             messages=[{"role": "user", "content": prompt}]
         )
         return response.choices[0].message.content
@@ -389,11 +389,11 @@ def stage0a_pain_mining() -> List[str]:
 
 def stage0b_pattern_analysis(raw_pains: List[str]) -> List[Dict]:
     """
-    Use o1-preview to cluster patterns and identify opportunities
+    Use gpt-4o to cluster patterns and identify opportunities
     Returns 50 ranked pain clusters
     """
     print("\n" + "="*80)
-    print("STAGE 0B: PATTERN ANALYSIS - Clustering Pain Points with o1-preview")
+    print("STAGE 0B: PATTERN ANALYSIS - Clustering Pain Points with gpt-4o")
     print("="*80)
 
     combined_pains = "\n".join(raw_pains)
@@ -450,8 +450,8 @@ Format:
 }}
 """
 
-    print("\n🤖 Analyzing patterns with o1-preview (this takes ~3-5 minutes)...")
-    response = call_openai(prompt, model="o1-preview-2024-09-12", response_format="json")
+    print("\n🤖 Analyzing patterns with gpt-4o (this takes ~1-2 minutes)...")
+    response = call_openai(prompt, model="gpt-4o", response_format="json")
 
     if not response:
         print("❌ Pattern analysis failed")
