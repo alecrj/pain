@@ -473,25 +473,64 @@ Return top 50 clusters as JSON:
     response = call_openai(prompt, model="gpt-4o", response_format="json")
 
     if response:
-        data = json.loads(response)
-        clusters = data.get("clusters", [])
+        try:
+            data = json.loads(response)
+            clusters = data.get("clusters", [])
 
-        # Sort by rank_score descending
-        clusters = sorted(clusters, key=lambda x: x.get("rank_score", 0), reverse=True)
+            # Sort by rank_score descending
+            clusters = sorted(clusters, key=lambda x: x.get("rank_score", 0), reverse=True)
 
-        print(f"✅ Created {len(clusters)} pain clusters, ranked by economic impact\n")
+            print(f"✅ Created {len(clusters)} pain clusters, ranked by economic impact\n")
 
-        # Show top 5
-        print("   🏆 TOP 5 CLUSTERS BY ROI:\n")
-        for i, cluster in enumerate(clusters[:5], 1):
-            print(f"   {i}. {cluster.get('pain_category', 'Unknown')}")
-            print(f"      • {cluster.get('mention_count', 0)} mentions")
-            print(f"      • ${cluster.get('avg_annual_cost_per_business', 0):,}/year per business")
-            print(f"      • {cluster.get('estimated_market_size', 0):,} potential customers")
-            print(f"      • Industries: {', '.join(cluster.get('industries', [])[:3])}")
-            print()
+            if len(clusters) == 0:
+                print("⚠️  WARNING: GPT-4o returned 0 clusters. Response may have been truncated.")
+                print(f"   Response preview: {response[:500]}...")
+                print("\n   Falling back to simple grouping by business_type...\n")
 
-        return clusters[:50]  # Return top 50
+                # Fallback: Simple grouping by business_type
+                business_groups = {}
+                for pain in quantified_pains:
+                    biz_type = pain.get("business_type", "Unknown Business")
+                    if biz_type not in business_groups:
+                        business_groups[biz_type] = []
+                    business_groups[biz_type].append(pain)
+
+                # Convert to clusters
+                clusters = []
+                for biz_type, pains in business_groups.items():
+                    cluster = {
+                        "pain_category": f"{biz_type} - {pains[0].get('pain', 'Unknown pain')[:60]}",
+                        "mention_count": len(pains),
+                        "avg_time_waste_hours_per_week": 5.0,  # Default estimate
+                        "avg_annual_cost_per_business": 10000,  # Default estimate
+                        "industries": [biz_type],
+                        "current_workarounds": [p.get("workaround", "") for p in pains if p.get("workaround")],
+                        "why_persists": "No good solution exists",
+                        "estimated_market_size": 1000,
+                        "rank_score": len(pains) * 10000,
+                        "sample_quotes": [p.get("pain", "") for p in pains[:3]]
+                    }
+                    clusters.append(cluster)
+
+                clusters = sorted(clusters, key=lambda x: x.get("rank_score", 0), reverse=True)[:50]
+                print(f"✅ Created {len(clusters)} fallback clusters\n")
+
+            # Show top 5
+            print("   🏆 TOP 5 CLUSTERS BY ROI:\n")
+            for i, cluster in enumerate(clusters[:5], 1):
+                print(f"   {i}. {cluster.get('pain_category', 'Unknown')}")
+                print(f"      • {cluster.get('mention_count', 0)} mentions")
+                print(f"      • ${cluster.get('avg_annual_cost_per_business', 0):,}/year per business")
+                print(f"      • {cluster.get('estimated_market_size', 0):,} potential customers")
+                print(f"      • Industries: {', '.join(cluster.get('industries', [])[:3])}")
+                print()
+
+            return clusters[:50]  # Return top 50
+
+        except json.JSONDecodeError as e:
+            print(f"⚠️  ERROR: Failed to parse GPT-4o response: {e}")
+            print(f"   Response: {response[:500]}...")
+            return []
 
     return []
 
@@ -511,6 +550,11 @@ def stage0d_idea_generation(pain_clusters: List[Dict], target_count: int) -> Lis
     print(f"STAGE 0D: ROI-JUSTIFIED IDEA GENERATION")
     print("="*80)
     print(f"\n📝 Generating {target_count} specific ideas from top pain clusters...\n")
+
+    if len(pain_clusters) == 0:
+        print("⚠️  ERROR: No pain clusters available. Cannot generate ideas.")
+        print("   This likely means Stage 0C clustering failed or returned 0 results.\n")
+        return []
 
     founder_profile = load_founder_profile()
     ideas = []
