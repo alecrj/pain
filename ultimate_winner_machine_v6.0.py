@@ -67,6 +67,10 @@ def stage3_build_feasibility(idea: Dict) -> Tuple[bool, str, Dict]:
     # v5 returns {"verdict": "PASS/KILL", "analysis": {...}}
     passed = result.get("verdict") == "PASS"
     reason = "" if passed else result.get("analysis", {}).get("reasoning", "Failed build checks")
+    print(f"\n🔍 DEBUG Stage 3 Wrapper:")
+    print(f"   Result verdict: {result.get('verdict')}")
+    print(f"   Passed: {passed}")
+    print(f"   Reason: {reason}")
     return passed, reason, result
 
 def stage4_cost_analysis(idea: Dict) -> Tuple[bool, str, Dict]:
