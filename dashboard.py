@@ -67,8 +67,14 @@ with tab1:
             return True
         # Check if killed after this stage (means it passed this stage)
         if status.startswith("killed_stage"):
-            killed_stage = int(status.replace("killed_stage", "").replace("killed_", ""))
-            return killed_stage > stage_num
+            try:
+                # Extract number from "killed_stage3" or "killed_stage_3"
+                killed_stage_str = status.replace("killed_stage", "").replace("killed_", "").strip()
+                killed_stage = int(killed_stage_str)
+                return killed_stage > stage_num
+            except (ValueError, AttributeError):
+                # If parsing fails, check for analysis fields
+                pass
         # Check if has analysis for this stage (means it was processed)
         stage_key = f"stage_{stage_num}_"
         return any(key.startswith(stage_key) for key in idea.keys())
