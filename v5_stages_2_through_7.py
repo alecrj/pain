@@ -365,15 +365,7 @@ def stage3_build_feasibility(idea: Dict, call_openai_fn) -> Dict:
     print(f"{'─'*60}")
 
     # For v6.0 ideas: Trust Stage 0D's digital-only filtering
-    print(f"\n🔍 DEBUG v6.0 detection:")
-    print(f"   buildable_3_months: {idea.get('buildable_3_months')}")
-    print(f"   no_hardware_required: {idea.get('no_hardware_required')}")
-    print(f"   no_certifications_required: {idea.get('no_certifications_required')}")
-    print(f"   solo_founder_feasible: {idea.get('solo_founder_feasible')}")
-    print(f"   public_apis_only: {idea.get('public_apis_only')}")
-
     if idea.get("buildable_3_months") is not None:
-        print(f"   ✓ buildable_3_months is not None, checking other flags...")
         # This is a v6.0 idea that already passed digital-only checks in Stage 0D
         if (idea.get("buildable_3_months") and
             idea.get("no_hardware_required") and
@@ -394,8 +386,6 @@ def stage3_build_feasibility(idea: Dict, call_openai_fn) -> Dict:
                     "reasoning": "Pre-validated in Stage 0D with strict digital-only filters"
                 }
             }
-        else:
-            print(f"   ✗ One or more flags is False, continuing to GPT evaluation")
 
     # For v5.0 ideas or v6.0 ideas that need re-validation: Full check
     prompt = f"""Analyze build feasibility for:
