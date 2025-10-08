@@ -58,15 +58,29 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs(["📊 Funnel", "💡 All Ideas", "🏆 W
 with tab1:
     st.header("Stage-by-Stage Funnel")
 
-    # Calculate stage counts
+    # Calculate stage counts (works for both v5.0 and v6.0)
+    def passed_stage(idea, stage_num):
+        """Check if idea passed a given stage number"""
+        status = idea.get("status", "")
+        # FINALIST means passed all stages
+        if status == "FINALIST" or status == "WINNER":
+            return True
+        # Check if killed after this stage (means it passed this stage)
+        if status.startswith("killed_stage"):
+            killed_stage = int(status.replace("killed_stage", "").replace("killed_", ""))
+            return killed_stage > stage_num
+        # Check if has analysis for this stage (means it was processed)
+        stage_key = f"stage_{stage_num}_"
+        return any(key.startswith(stage_key) for key in idea.keys())
+
     stage_counts = {
         "Generated": len(ideas),
-        "Stage 1: White Space": len([i for i in ideas if "passed_stage1" in i.get("status", "") or i.get("status") == "WINNER"]),
-        "Stage 2: Build": len([i for i in ideas if "passed_stage2" in i.get("status", "") or i.get("status") == "WINNER"]),
-        "Stage 3: Cost": len([i for i in ideas if "passed_stage3" in i.get("status", "") or i.get("status") == "WINNER"]),
-        "Stage 4: Evidence": len([i for i in ideas if "passed_stage4" in i.get("status", "") or i.get("status") == "WINNER"]),
-        "Stage 5: GTM": len([i for i in ideas if "passed_stage5" in i.get("status", "") or i.get("status") == "WINNER"]),
-        "Stage 6: Founder": len([i for i in ideas if i.get("status") == "WINNER"])
+        "Stage 1: White Space": len([i for i in ideas if passed_stage(i, 1)]),
+        "Stage 2: Evidence": len([i for i in ideas if passed_stage(i, 2)]),
+        "Stage 3: Build": len([i for i in ideas if passed_stage(i, 3)]),
+        "Stage 4: Cost": len([i for i in ideas if passed_stage(i, 4)]),
+        "Stage 5: GTM": len([i for i in ideas if passed_stage(i, 5)]),
+        "Stage 6: Founder": len([i for i in ideas if passed_stage(i, 6) or i.get("status") in ["FINALIST", "WINNER"]])
     }
 
     # Create funnel chart
@@ -211,17 +225,32 @@ with tab5:
         # Pass rates by stage
         st.subheader("Pass Rates")
 
+        # Reuse the same passed_stage function from funnel tab
+        def passed_stage(idea, stage_num):
+            """Check if idea passed a given stage number"""
+            status = idea.get("status", "")
+            if status == "FINALIST" or status == "WINNER":
+                return True
+            if status.startswith("killed_stage"):
+                try:
+                    killed_stage = int(status.replace("killed_stage", "").replace("killed_", ""))
+                    return killed_stage > stage_num
+                except:
+                    return False
+            stage_key = f"stage_{stage_num}_"
+            return any(key.startswith(stage_key) for key in idea.keys())
+
         col1, col2 = st.columns(2)
 
         with col1:
-            st.metric("Stage 1: White Space", f"{len([i for i in ideas if 'passed_stage1' in i.get('status', '')])}/{total_ideas}")
-            st.metric("Stage 2: Build", f"{len([i for i in ideas if 'passed_stage2' in i.get('status', '')])}/{total_ideas}")
-            st.metric("Stage 3: Cost", f"{len([i for i in ideas if 'passed_stage3' in i.get('status', '')])}/{total_ideas}")
+            st.metric("Stage 1: White Space", f"{len([i for i in ideas if passed_stage(i, 1)])}/{total_ideas}")
+            st.metric("Stage 2: Evidence", f"{len([i for i in ideas if passed_stage(i, 2)])}/{total_ideas}")
+            st.metric("Stage 3: Build", f"{len([i for i in ideas if passed_stage(i, 3)])}/{total_ideas}")
 
         with col2:
-            st.metric("Stage 4: Evidence", f"{len([i for i in ideas if 'passed_stage4' in i.get('status', '')])}/{total_ideas}")
-            st.metric("Stage 5: GTM", f"{len([i for i in ideas if 'passed_stage5' in i.get('status', '')])}/{total_ideas}")
-            st.metric("Stage 6: Founder", f"{len(winners)}/{total_ideas}")
+            st.metric("Stage 4: Cost", f"{len([i for i in ideas if passed_stage(i, 4)])}/{total_ideas}")
+            st.metric("Stage 5: GTM", f"{len([i for i in ideas if passed_stage(i, 5)])}/{total_ideas}")
+            st.metric("Stage 6: Founder", f"{len([i for i in ideas if passed_stage(i, 6) or i.get('status') in ['FINALIST', 'WINNER']])}/{total_ideas}")
 
         st.markdown("---")
 
