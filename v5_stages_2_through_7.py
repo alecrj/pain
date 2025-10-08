@@ -364,6 +364,30 @@ def stage3_build_feasibility(idea: Dict, call_openai_fn) -> Dict:
     print(f"STAGE 3: BUILD FEASIBILITY (DIGITAL-ONLY) - Idea #{idea['id']}")
     print(f"{'─'*60}")
 
+    # For v6.0 ideas: Trust Stage 0D's digital-only filtering
+    if idea.get("buildable_3_months") is not None:
+        # This is a v6.0 idea that already passed digital-only checks in Stage 0D
+        if (idea.get("buildable_3_months") and
+            idea.get("no_hardware_required") and
+            idea.get("no_certifications_required") and
+            idea.get("solo_founder_feasible") and
+            idea.get("public_apis_only")):
+            print(f"\n✅ PASS - v6.0 idea already validated in Stage 0D (digital-only, solo-buildable)")
+            return {
+                "passed": True,
+                "reason": "",
+                "verdict": "PASS",
+                "analysis": {
+                    "digital_only": True,
+                    "public_api_feasible": True,
+                    "solo_buildable": True,
+                    "no_certifications": True,
+                    "decision": "PASS",
+                    "reasoning": "Pre-validated in Stage 0D with strict digital-only filters"
+                }
+            }
+
+    # For v5.0 ideas or v6.0 ideas that need re-validation: Full check
     prompt = f"""Analyze build feasibility for:
 
 Business: {idea['business']}

@@ -64,7 +64,10 @@ from v5_stages_2_through_7 import (
 # Wrapper functions to match v5.0 signatures
 def stage3_build_feasibility(idea: Dict) -> Tuple[bool, str, Dict]:
     result = v5_build(idea, call_openai)
-    return result.get("passed", False), result.get("reason", ""), result
+    # v5 returns {"verdict": "PASS/KILL", "analysis": {...}}
+    passed = result.get("verdict") == "PASS"
+    reason = "" if passed else result.get("analysis", {}).get("reasoning", "Failed build checks")
+    return passed, reason, result
 
 def stage4_cost_analysis(idea: Dict) -> Tuple[bool, str, Dict]:
     result = v5_cost(idea, call_perplexity, call_openai)
